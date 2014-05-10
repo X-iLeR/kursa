@@ -1,0 +1,143 @@
+2014/05/09 19:22:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/contact
+---
+2014/05/09 19:26:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/page?view=about
+---
+2014/05/09 19:26:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/contact
+---
+2014/05/09 19:27:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/login
+---
+2014/05/09 19:42:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/page?view=about
+---
+2014/05/09 19:42:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/contact
+---
+2014/05/09 19:42:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/contact
+---
+2014/05/09 19:42:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/login
+---
+2014/05/09 19:42:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/page?view=about
+---
+2014/05/09 19:42:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/index
+---
+2014/05/09 19:42:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/contact
+---
+2014/05/09 19:42:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/login
+---
+2014/05/09 19:46:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "bootstrap".' in /home/x-iler/proj/yii/framework/web/CController.php:483
+Stack trace:
+#0 /home/x-iler/proj/yii/framework/web/CController.php(270): CController->missingAction('bootstrap')
+#1 /home/x-iler/proj/yii/framework/web/CWebApplication.php(282): CController->run('bootstrap')
+#2 /home/x-iler/proj/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/bootstrap/...')
+#3 /home/x-iler/proj/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/x-iler/proj/yii/kursak/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/bootstrap/css/bootstrap.css
+HTTP_REFERER=http://kursak.int/index.php/site/login
+---

@@ -1,0 +1,78 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+body {
+    font-family: PT Sans, Helvetica, Arial;
+    font-size: 14px;
+    color: #333;
+}
+.b3radius {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+}
+#page_align {
+    width: 85%; margin: 35px auto;
+    background: #FFF;
+    box-shadow: 0px 1px 3px #000000;
+    -webkit-box-shadow: 0px 1px 3px #000000;
+    -o-box-shadow: 0px 1px 3px #000000;
+    -moz-box-shadow: 0px 1px 3px #000000;
+}
+header{
+    /*background: #FFF;*/
+}
+nav{width: 100%; height: 42px; background: #eaeaea;border-bottom: solid 3px #F1F1F1;border-top: solid 3px #F1F1F1;}
+nav ul {list-style: none;}
+nav ul li {
+    float: left;padding: 6px 15px;
+    border-right: solid 1px #F1F1F1;
+}
+nav ul li a{
+    color: #868686;
+    display: block;
+    padding: 0 7px;
+
+}
+nav ul li:hover {background: #ccc;}
+a {
+    text-decoration: none;
+}
+article {
+    margin: 5px 0px 0px 5px;
+    line-height: 16px;
+    width: 800px;
+    text-align: left;
+    float: left;
+
+}
+aside{
+    float: left;
+    width: 190px;
+    background: #A9A9A9;
+}
+.class_name{
+    width: 150px;
+    height: 150px;
+    background: #eaeaea;
+    float: left;
+    margin-top: 5px;
+}
+.clr{
+    clear: both;
+}
+#copyright{
+    clear: left;
+    width: 152px;
+}
+h1 {
+    font-size: 18px;
+    color: #515151;
+    padding-top: 14px;
+    padding-left: 18px;
+}
