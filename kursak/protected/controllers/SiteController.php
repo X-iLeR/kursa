@@ -106,4 +106,11 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+    public function actionRegister() {
+        if (! Yii::app()->user->isGuest) {
+            Yii::app()->user->logout();
+        }
+        $this->render('register', array('model' => new User() ));
+    }
 }

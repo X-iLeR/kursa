@@ -69,17 +69,17 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'pwd' => 'Pwd',
-			'blocked' => 'Blocked',
+			'name' => 'Введите имя героя',
+			'pwd' => 'Пароль',
+			'blocked' => 'Неактиивен',
 			'hp' => 'Hp',
-			'strenght' => 'Strenght',
-			'agility' => 'Agility',
-			'stamina' => 'Stamina',
-			'intuition' => 'Intuition',
+			'strenght' => 'Str',
+			'agility' => 'Agi',
+			'stamina' => 'Sta',
+			'intuition' => 'Int',
 			'lvl' => 'Lvl',
 			'exp' => 'Exp',
-			'is_online' => 'Is Online',
+			'is_online' => 'Online',
 		);
 	}
 
