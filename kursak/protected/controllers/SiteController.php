@@ -107,10 +107,37 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+    /**
+     * @var $form RegistrationForm
+     * @var $user User
+     */
     public function actionRegister() {
         if (! Yii::app()->user->isGuest) {
             Yii::app()->user->logout();
+            $this->refresh();
         }
-        $this->render('register', array('model' => new User() ));
+
+        $form=new RegistrationForm;
+        $user = new User;
+
+        if(isset($_POST['RegistrationForm']))
+        {
+            $form->attributes=$_POST['RegistrationForm'];
+            if($form->validate())
+            {
+                $user->name = $form->name;
+                $user->pwd = md5($form->pwd1);
+                if ($user->validate()) {
+                    if ($user->save()) {
+                        Yii::app()->user->setFlash('OK','Ваш персонаж успешно создан.');
+                    } else {
+                        Yii::app()->user->setFlash('error','Ваш персонаж не был создан.');
+                    }
+                } else {
+                    Yii::app()->user->setFlash('error','Ваш персонаж не был создан.');
+                }
+            }
+        }
+        $this->render('register',array('formClass'=>$form, 'user' => $user));
     }
 }
