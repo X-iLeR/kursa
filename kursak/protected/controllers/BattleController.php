@@ -2,11 +2,23 @@
 
 class BattleController extends Controller
 {
-	public function actionAcceptOpponent($id)
+    /**
+     * Хост принимает вызов
+     * @param int $id ID противника
+     */
+    public function actionAcceptOpponent($id)
 	{
-		$this->render('acceptOpponent');
+        $battle = Battle::acceptBattle(Yii::app()->user->id, $id);
+            if($battle) {
+                echo json_encode(array('accepted' => 'true'));
+                return;
+            }
+        echo json_encode(array('accepted' => 'false'));
 	}
 
+    /**
+     * Хост проверяет, появился ли противник
+     */
 	public function actionCheckOpponent()
 	{
         if (Yii::app()->user->isGuest || empty(Yii::app()->user->id)) {
@@ -14,7 +26,7 @@ class BattleController extends Controller
         }
         $user_id = Yii::app()->user->id;
         $user = User::model()->findByPk($user_id);
-        $battle = Battle::model()->find('time_begin IS NULL AND user1=:user1', array('user1' => $user_id));
+        $battle = Battle::getBattleLobby($user_id);
         /**
          * @var $battle Battle
          */
@@ -30,21 +42,32 @@ class BattleController extends Controller
         }
 	}
 
-	public function actionCreate()
+    /**
+     * TODO запилить страницу создания лобби
+     */
+    public function actionCreate()
 	{
-		$this->render('create');
+        $user_id = Yii::app()->user->id;
+        $user = User::model()->findByPk($user_id);
+		$this->render('create', array('user' => $user) );
 	}
 
-	public function actionGetResults()
+    /**
+     * TODO запилить страницу или функцию получения статистики боя
+     */
+	public function actionGetResults($id)
 	{
 		$this->render('getResults');
 	}
 
+    /**
+     * TODO Гравець має отримати сторінку боя або сторінку інформаціі про попередній бій
+     */
 	public function actionIndex()
 	{
         $user_id = Yii::app()->user->isGuest ? false : Yii::app()->user->id;
         if(!empty ($user_id)) {
-            $battle = Battle::model()->find('time_end IS NULL AND (user1=:user_id OR user2=:user_id)', array("user_id" => $user_id));
+            $battle = Battle::getActiveBattle($user_id);
             if( empty($battle) ) {
                 Yii::app()->user->setFlash('notice', 'У Вас нет текущих битв.');
                 $this->redirect(Yii::app()->createUrl('site/index'));
@@ -53,17 +76,26 @@ class BattleController extends Controller
                 $this->render('index', array('battle' => $battle));
             }
         } else {
-            $this->redirect(Yii::app()->createUrl('site/login'));
+            $this->redirect(Yii::app()->createUrl('/login'));
         }
 	}
 
-	public function actionInit()
+    /**
+     * поки не знаю навіщо
+     */
+    public function actionInit()
 	{
 		$this->render('init');
 	}
 
-	public function actionJoin()
+    /**
+     * Суперник робить заявку увійти до лоббі
+     * @param int $id ID хоста
+     * TODO Вирішити, можливо буде реалізація з id битви
+     */
+	public function actionJoin($id)
 	{
+
 		$this->render('join');
 	}
 
@@ -93,4 +125,24 @@ class BattleController extends Controller
 		);
 	}
 	*/
+    public function filters()
+    {
+        return array(
+            'accessControl', //вмикає правила доступу, дивитись accessRules() нижче
+        );
+    }
+
+    public function accessRules() {
+        return array(
+            array(
+                'allow',
+                'users' => ['@'] //дозволяє все авторизованим користувачам
+            ),
+            array(
+                'deny',
+                'users' => ['?'] //забороняє все не авторизованим користувачам
+                //TODO перевірити, чи є екшни, для яких не потрібна авторізація
+            )
+        );
+    }
 }

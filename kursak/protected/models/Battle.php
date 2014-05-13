@@ -111,4 +111,63 @@ class Battle extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    /**
+     * Возвращает текущую битву, в которой участвует игрок
+     * либо false если игрок вне битвы
+     * @param int $user_id  id игрока
+     * @return bool|Battle
+     */
+    public static function getActiveBattle($user_id) {
+        $activeBattle =  Battle::model()->find('time_end IS NULL AND (user1=:user_id OR user2=:user_id)', array("user_id" => $user_id));
+        if(empty($activeBattle)) {
+            return false;
+        }
+        return $activeBattle;
+    }
+
+    /**
+     * Возвращает лобби битвы, которую создал игрок
+     * либо false если игрок вне лобби
+     * @param int $user_id  id игрока
+     * @return bool|Battle
+     */
+    public static function getBattleLobby($user_id) {
+        $lobby = Battle::model()->find('time_begin IS NULL AND user1=:user1', array('user1' => $user_id));
+        if(empty($lobby)) {
+            return false;
+        }
+        return $lobby;
+    }
+
+    /**
+     * Задаёт начало битвы при принятии игроком вызова
+     * либо false если Battle не сохранён в БД
+     * Вызывает исключение при передаче нечисловых id или в случае их совпадения
+     * @thows InvalidArgumentException
+     * @param int $user1  id создателя лобби
+     * @param int $user2  id противника
+     * @return bool|Battle
+     */
+    public static function acceptBattle ($user1, $user2) {
+        if (is_numeric($user1) && is_numeric($user2) && $user1 != $user2) {
+            $battle = Battle::model()->find(
+                'user1=:user1 AND
+                 user2=:user2 AND
+                 time_begin IS NULL ORDER BY id DESC',
+                array(
+                    'user1' => $user1,
+                    'user2' => $user2
+                )
+            );
+            $battle->time_begin = time();
+            if ($battle->validate() && $battle->save()) {
+                return $battle;
+            }
+            return false;
+        } else {
+            throw new InvalidArgumentException;
+        }
+    }
+
 }
