@@ -95,6 +95,32 @@ class BattleController extends Controller
      */
 	public function actionJoin($id)
 	{
+        $user_id = Yii::app()->user->id;
+        if(!is_numeric($id) || $id == $user_id)
+        $battle = Battle::getBattleLobby($id);
+        if ($battle) {
+           if( empty($battle->user2) ) {
+               $battle->user2 = $user_id;
+               $battle->validate() && $battle->save();
+               echo json_encode(array('status'=>'joined'));
+           } else {
+               if($battle->user2 == $user_id) {
+                   if(!empty($battle->time_begin)) {
+                       echo json_encode( array('status' => 'started') );
+                   } else {
+                       echo json_encode( array('status' => 'waiting') );
+                   }
+               } else {
+                   if(!empty($battle->time_begin)) {
+                       echo json_encode( array('status' => 'another'));
+                   } else {
+                       echo json_encode( array('status' => 'closed'));
+                   }
+               }
+           }
+        } else {
+            echo json_encode( array( 'status' => 'false'));
+        }
 
 		$this->render('join');
 	}
