@@ -202,6 +202,8 @@ class User extends CActiveRecord
         $this->save();
         return $this;
     }
+    const  DEFAULT_HP = 5;
+    public function getMaxHp() { return ($this->stamina + User::DEFAULT_HP); }
 
     const POINTS_PER_LVL = 2;
 }
