@@ -10,10 +10,12 @@ $user = User::model()->findByPk( Yii::app()->user->id);
     <h3><?php echo "Жизни: " .  $user->hp . "/" . $user->getmaxHp();?></h3>
     <h4><?php echo"Уровень: " . $user->lvl;?></h4>
     <h4><?php echo"Опыта: " . $user->exp;?></h4>
-    <p>
-        <?php echo "Сила: " . $user->strenght . "<br>";
-        echo "Выносливость: " .  $user->stamina . "<br>";
-        echo "Ловкость: " . $user->agility . "<br>";
-        echo "Интуиция: " . $user->intuition . "<br>";
-        ?>
-        </p>
+    <div class="user-attributes">
+
+        <p>Сила:        <?php echo $user->strenght ;?>      <a id="strength_add" class="parameter-add">&nbsp;</a> </p>
+        <p>Выносливость <?php echo $user->stamina ;?>       <a id="stamina_add" class="parameter-add">&nbsp;</a></p>
+        <p>Ловкость:    <?php echo $user->agility ;?>       <a id="agility_add" class="parameter-add">&nbsp;</a></p>
+        <p>Интуиция:    <?php echo $user->intuition ;?>     <a id="intuition_add" class="parameter-add">&nbsp;</a></p>
+
+    </div>
+</div>

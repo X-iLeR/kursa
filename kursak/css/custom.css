@@ -76,3 +76,16 @@ h1 {
     padding-top: 14px;
     padding-left: 18px;
 }
+
+.parameter-add {
+    float: right;
+    background: url("plus_green.gif");
+    display: inline-block;
+    min-height: 15px;
+    min-width: 15px;
+    text-decoration: none;
+}
+
+.parameter-add:hover, .parameter-add:active {
+    text-decoration: none;
+}
