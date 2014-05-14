@@ -66,6 +66,7 @@ class BattleController extends Controller
 	public function actionIndex()
 	{
         $user_id = Yii::app()->user->isGuest ? false : Yii::app()->user->id;
+
         if(!empty ($user_id)) {
             $battle = Battle::getActiveBattle($user_id);
             if( empty($battle) ) {
@@ -77,26 +78,18 @@ class BattleController extends Controller
                 }
 //                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
-                $last_turn = Turn::getLast($battle->id);
+                $user_number = $battle->getUserNumber($user_id);
                 $turn = Turn::getCurrent($battle->id);
                 if($turn) {
-                    $turn = $turn->attributes;
-                    $userNumber = 1;
-                    $opponentNumber = 2;
-                    if($battle->user1 != $user_id) {
-                        $userNumber = 2;
-                        $opponentNumber = 1;
+                    if(!empty($_REQUEST)) {
+                        $turn->processFormData($_REQUEST);
+
                     }
-                    $turn['attack']     = $turn['attack'. $userNumber];
-                    $turn['defense']    = $turn['defense'. $userNumber];
-                    $turn['damage']     = $turn['damage'. $userNumber];
-                    unset($turn['attack'.  $userNumber]);
-                    unset($turn['defense'. $userNumber]);
-                    unset($turn['damage'.  $userNumber]);
-                    unset($turn['attack'.  $opponentNumber]);
-                    unset($turn['defense'. $opponentNumber]);
-                    unset($turn['damage'.  $opponentNumber]);
+                    $turn = $turn->toTurnArrayForUser($user_id);
+                } else {
+                    $turn = array();
                 }
+                $last_turn = Turn::getLast($battle->id);
                 $this->render('index', array('battle' => $battle, 'last_turn'=>$last_turn, 'turn'=>$turn));
             }
         } else {

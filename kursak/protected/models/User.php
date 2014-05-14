@@ -130,4 +130,78 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function getDamage(User $foe) {
+        if($foe->isEvaded($this)) {
+            return 0;
+        }
+        $damage = $this->rollDamage();
+        if($this->isCritical($foe)) {
+            $damage *= 2;
+        }
+        return $damage;
+    }
+
+    public function rollDamage() {
+        $damage = ($this->strenght - $this->strenght/3 + rand(0, $this->strenght));
+        return (int) $damage;
+    }
+
+    public function isEvaded(User $foe) {
+        $agilityBonus = $this->agility - $foe->agility;
+        return (rand(0, 100) > (90 - ($agilityBonus*2) ) );
+    }
+
+    public function isCritical(User $foe) {
+        $intuitionBonus = $this->intuition - $foe->intuition;
+        return (rand(0, 100) > (90 - $intuitionBonus));
+    }
+
+    public function loseHp($amount) {
+        if (!is_numeric($amount)) {
+            throw new InvalidArgumentException;
+        }
+        if($amount > $this->hp) {
+            $this->hp = 0;
+        } elseif ($amount > 0) {
+            $this->hp -= $amount;
+        } else {
+            return $this;
+        }
+        $this->save();
+        return $this;
+    }
+
+
+    public function addExp($amount) {
+        if(! is_numeric($amount) || $amount < 0 ) {
+            throw new InvalidArgumentException;
+        }
+        $this->exp += $amount;
+        $this->checkLvlup();
+        $this->save();
+        return $this;
+    }
+
+    public function checkLvlup() {
+        $updated = (int)floor($this->exp/100);
+        if($updated != $this->lvl) {
+            $this->lvl = $updated;
+            $this->addPoints(User::POINTS_PER_LVL);
+            $this->save();
+            return true;
+        }
+        return false;
+    }
+
+    public function addPoints($amount) {
+        if(! is_numeric($amount) || $amount < 0 ) {
+            throw new InvalidArgumentException;
+        }
+        $this->points += $amount;
+        $this->save();
+        return $this;
+    }
+
+    const POINTS_PER_LVL = 2;
 }

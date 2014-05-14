@@ -17,4 +17,12 @@ class Helpers {
         }
     }
 
+    public static function echoBool($expression) {
+        if(!empty($expression) && !!$expression) {
+            echo 'true';
+        } else {
+            echo 'false';
+        }
+    }
+
 } 

@@ -19,6 +19,7 @@
  */
 class Turn extends CActiveRecord
 {
+    const BODY_SECTIONS_COUNT = 4;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -157,5 +158,97 @@ class Turn extends CActiveRecord
         return $currentTurn;
     }
 
+    public function toTurnArrayForUser($user_id) {
+        $turn = $this->attributes;
+        $userNumber = 1;
+        $opponentNumber = 2;
+        if($this->battle->user1 != $user_id) {
+            $userNumber = 2;
+            $opponentNumber = 1;
+        }
+        $turn['attack']     = $turn['attack'. $userNumber];
+        $turn['defense']    = $turn['defense'. $userNumber];
+        $turn['damage']     = $turn['damage'. $userNumber];
+        unset($turn['attack'.  $userNumber]);
+        unset($turn['defense'. $userNumber]);
+        unset($turn['damage'.  $userNumber]);
+        unset($turn['attack'.  $opponentNumber]);
+        unset($turn['defense'. $opponentNumber]);
+        unset($turn['damage'.  $opponentNumber]);
+        return $turn;
+    }
+
+    public function processFormData($formData) {
+        $user_id = $formData['user_id'];
+        $user_number = $this->battle->getUserNumber($user_id);
+        if(isset ($formData['attack'])) {
+            $attack = 'attack'.$user_number;
+            $this->$attack = $formData['attack'];
+        }
+        if(isset ($formData['defense'])) {
+            $defense = 'defense'.$user_number;
+            $this->$defense = $formData['defense'];
+        }
+        if($this->isEnded()) {
+            $this->process();
+        }
+        $this->validate() && $this->save();
+        return $this;
+    }
+
+    public function isEnded() {
+        return (
+            !empty($this->finished) ||
+            (isset($this->attack1) || isset($this->defense1) )&&
+            (isset($this->attack2) || isset($this->defense2) )
+        );
+    }
+
+    public function process() {
+        $damage1 = !$this->isBlocked(2) && $this->battle->user10->getDamage($this->battle->user20);
+        $damage2 = !$this->isBlocked(1) && $this->battle->user20->getDamage($this->battle->user10);
+        $this->damage1 = $damage1;
+        $this->damage2 = $damage2;
+        $this->battle->user10->loseHp($damage2);
+        $this->battle->user20->loseHp($damage1);
+        $hp1 = $this->battle->user10->hp;
+        $hp2 = $this->battle->user20->hp;
+        if($hp1 * $hp2 == 0) {
+            if($hp1 == 0) {
+                if($hp2 == 0) {
+                    $this->battle->setWinnerById(0);
+                } else {
+                    $this->battle->setWinnerByNumber(2);
+                }
+            } else {
+                $this->battle->setWinnerByNumber(1);
+            }
+        }
+    }
+
+    public function isBlocked($userNumber) {
+        if ($userNumber == 1) {
+            $foeNumber = 2;
+        } elseif ($userNumber == 2) {
+            $foeNumber = 1;
+        } else {
+            throw new InvalidArgumentException;
+        }
+        $defense = 'defense'.$userNumber;
+        $attack = 'attack'.$foeNumber;
+
+        $attack = $this->$attack;
+        $defense = $this->$defense;
+
+        if(empty($attack) || $attack > Turn::BODY_SECTIONS_COUNT) {
+            return true;
+        }
+
+        if(empty($defense)) {
+            return false;
+        }
+
+        return ($defense == $attack || $defense == ($attack - 1 + Turn::BODY_SECTIONS_COUNT) % (Turn::BODY_SECTIONS_COUNT + 1));
+    }
 
 }

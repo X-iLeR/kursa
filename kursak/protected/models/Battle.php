@@ -18,6 +18,7 @@
  */
 class Battle extends CActiveRecord
 {
+    const DEFAULT_XP = 10;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -188,6 +189,55 @@ class Battle extends CActiveRecord
             return true;
         }
         return false;
+        }
+
+    public function getUserNumber($user_id) {
+        if ($user_id == $this->user1) {
+            return 1;
+        } elseif ($user_id == $this->user2) {
+            return 2;
+        } else {
+            return false;
+        }
+    }
+
+    public function setWinnerById($winner_id) {
+        if(!is_numeric($winner_id)) {
+            throw new InvalidArgumentException;
+        }
+        if ($winner_id == $this->user1) {
+            $winner = $this->user10;
+        } elseif ($winner_id == $this->user2) {
+            $winner = $this->user20;
+        } else {
+            $winner = User::model()->findByPk($winner_id);
+        }
+        if (!empty($winner) ) {
+            $this->setWinner($winner);
+        } else {
+            throw new InvalidArgumentException;
+        }
+    }
+
+    public function setWinner(User $winner) {
+        if(empty ($winner)) {
+            throw new InvalidArgumentException;
+        }
+        $winner->addExp(Battle::DEFAULT_XP);
+        $this->winner0 = $winner->id;
+        $this->time_end = time();
+        $this->save();
+    }
+
+    public function setWinnerByNumber($number) {
+        if (empty($number) || !in_array($number, array(1,2) ) ) {
+            throw new InvalidArgumentException;
+        }
+        if($number == 1) {
+            $this->setWinner($this->user10);
+        } else {
+            $this->setWinner($this->user20);
+        }
     }
 
 }
