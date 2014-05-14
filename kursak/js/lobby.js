@@ -22,13 +22,13 @@ var checkOpponent = function(user_id) {
                console.log(response['user2']);
             } else {
                 console.log('Waiting for opponent...');
-                setTimeout(function() {checkOpponent(user_id)}, 5000);
+                setTimeout(function() {checkOpponent(user_id)}, 10000);
             }
             $( this ).addClass( "success" );
 //            window.location.reload();
         }).error(function() {
             $( this ).addClass( "error" );
-            setTimeout(function() {checkOpponent(user_id)}, 5000);
+            setTimeout(function() {checkOpponent(user_id)}, 10000);
         }).done(function() {
             $( this ).addClass( "done" );
         });

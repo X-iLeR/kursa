@@ -119,7 +119,11 @@ class Battle extends CActiveRecord
      * @return bool|Battle
      */
     public static function getActiveBattle($user_id) {
-        $activeBattle =  Battle::model()->find('time_end IS NULL AND (user1=:user_id OR user2=:user_id)', array("user_id" => $user_id));
+        $activeBattle =  Battle::model()->find(
+            'time_end IS NULL AND
+             time_begin IS NOT NULL AND
+              (user1=:user_id OR user2=:user_id)',
+            array("user_id" => $user_id));
         if(empty($activeBattle)) {
             return false;
         }
@@ -133,7 +137,10 @@ class Battle extends CActiveRecord
      * @return bool|Battle
      */
     public static function getBattleLobby($user_id) {
-        $lobby = Battle::model()->find('time_begin IS NULL AND user1=:user1', array('user1' => $user_id));
+        $lobby = Battle::model()->find(
+            'time_begin IS NULL AND
+             user1=:user1',
+            array('user1' => $user_id));
         if(empty($lobby)) {
             return false;
         }
@@ -154,7 +161,8 @@ class Battle extends CActiveRecord
             $battle = Battle::model()->find(
                 'user1=:user1 AND
                  user2=:user2 AND
-                 time_begin IS NULL ORDER BY id DESC',
+                 time_begin IS NULL
+                  ORDER BY id DESC',
                 array(
                     'user1' => $user1,
                     'user2' => $user2
@@ -168,6 +176,18 @@ class Battle extends CActiveRecord
         } else {
             throw new InvalidArgumentException;
         }
+    }
+
+    public function isActive() {
+        if(
+            !empty($this->user10) &&
+            !empty($this->user20) &&
+            !empty($this->time_begin) &&
+            empty($this->time_end)
+        ) {
+            return true;
+        }
+        return false;
     }
 
 }

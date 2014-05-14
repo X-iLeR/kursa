@@ -30,7 +30,7 @@ class BattleController extends Controller
         /**
          * @var $battle Battle
          */
-        if (empty ($battle->user2)) {
+        if ($battle && empty ($battle->user2)) {
             $data = array('user2' => 'false');
         } else {
             $data = array('user2' => $battle->user20->attributes);
@@ -70,10 +70,34 @@ class BattleController extends Controller
             $battle = Battle::getActiveBattle($user_id);
             if( empty($battle) ) {
                 Yii::app()->user->setFlash('notice', 'У Вас нет текущих битв.');
-                $this->redirect(Yii::app()->createUrl('site/index'));
+                $lobby = Battle::getBattleLobby($user_id);
+                if($lobby) {
+                    Yii::app()->clientScript->registerScriptFile('/js/lobby.js', CClientScript::POS_END);
+                    $this->render('lobby', array('lobby' => $lobby));
+                }
+//                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
-                Yii::app()->clientScript->registerScriptFile('/js/battle.js', CClientScript::POS_END);
-                $this->render('index', array('battle' => $battle));
+                $last_turn = Turn::getLast($battle->id);
+                $turn = Turn::getCurrent($battle->id);
+                if($turn) {
+                    $turn = $turn->attributes;
+                    $userNumber = 1;
+                    $opponentNumber = 2;
+                    if($battle->user1 != $user_id) {
+                        $userNumber = 2;
+                        $opponentNumber = 1;
+                    }
+                    $turn['attack']     = $turn['attack'. $userNumber];
+                    $turn['defense']    = $turn['defense'. $userNumber];
+                    $turn['damage']     = $turn['damage'. $userNumber];
+                    unset($turn['attack'.  $userNumber]);
+                    unset($turn['defense'. $userNumber]);
+                    unset($turn['damage'.  $userNumber]);
+                    unset($turn['attack'.  $opponentNumber]);
+                    unset($turn['defense'. $opponentNumber]);
+                    unset($turn['damage'.  $opponentNumber]);
+                }
+                $this->render('index', array('battle' => $battle, 'last_turn'=>$last_turn, 'turn'=>$turn));
             }
         } else {
             $this->redirect(Yii::app()->createUrl('/login'));
