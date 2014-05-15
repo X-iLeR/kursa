@@ -88,6 +88,7 @@ h1 {
 
 .parameter-add:hover, .parameter-add:active {
     text-decoration: none;
+    background: url("plus_red.png");
 }
 
 .join_lobby span.join-result-ico {
