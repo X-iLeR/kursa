@@ -51,7 +51,7 @@ class BattleController extends Controller
         $user = User::model()->findByPk($user_id);
         if (isset ($_POST['create']) ) {
             $battle = new Battle;
-            $battle->user10 = $user;
+            $battle->user1 = $user_id;
             $battle->save();
             $this->redirect(Yii::app()->createUrl('battle/index'));
         }
@@ -165,7 +165,7 @@ class BattleController extends Controller
             }
             echo json_encode($data);
         } else {
-            $this->render('lobbyList');
+            $this->render('lobbyList', array('battles'=>$battles));
         }
     }
 	// Uncomment the following methods and override them if needed
