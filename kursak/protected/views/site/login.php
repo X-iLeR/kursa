@@ -46,5 +46,6 @@ $this->breadcrumbs=array(
 		<?php echo CHtml::submitButton('Войти'); ?>
 	</div>
 
+
 <?php $this->endWidget(); ?>
 </div><!-- form -->
