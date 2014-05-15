@@ -191,6 +191,7 @@ class Turn extends CActiveRecord
         }
         if($this->isEnded()) {
             $this->process();
+            $this->finished = true;
         }
         $this->validate() && $this->save();
         return $this;
@@ -205,14 +206,18 @@ class Turn extends CActiveRecord
     }
 
     public function process() {
-        $damage1 = !$this->isBlocked(2) && $this->battle->user10->getDamage($this->battle->user20);
-        $damage2 = !$this->isBlocked(1) && $this->battle->user20->getDamage($this->battle->user10);
+        $user1 = $this->battle->user10;
+        $user2 = $this->battle->user20;
+        $user1->setIsNewRecord(false);
+        $user2->setIsNewRecord(false);
+        $damage1 = !$this->isBlocked(2) ? $user1->getDamage($user2) : 0;
+        $damage2 = !$this->isBlocked(1) ? $user2->getDamage($user1) : 0;
         $this->damage1 = $damage1;
         $this->damage2 = $damage2;
-        $this->battle->user10->loseHp($damage2);
-        $this->battle->user20->loseHp($damage1);
-        $hp1 = $this->battle->user10->hp;
-        $hp2 = $this->battle->user20->hp;
+        $user1->loseHp($damage2);
+        $user2->loseHp($damage1);
+        $hp1 = $user1->hp;
+        $hp2 = $user2->hp;
         if($hp1 * $hp2 == 0) {
             if($hp1 == 0) {
                 if($hp2 == 0) {

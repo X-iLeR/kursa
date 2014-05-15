@@ -38,7 +38,7 @@ class BattleController extends Controller
         if(isset($_POST['ajax'])) {
             echo json_encode($data);
         } else {
-            $this->render('checkOpponent', array ('battle' => $battle,'user1' => $user, 'user2' => $data['user2']) );
+            $this->render('checkOpponent', array ('battle' => $battle,'user1' => $user, 'user2' => $battle->user20) );
         }
 	}
 
@@ -49,6 +49,12 @@ class BattleController extends Controller
 	{
         $user_id = Yii::app()->user->id;
         $user = User::model()->findByPk($user_id);
+        if (isset ($_POST['create']) ) {
+            $battle = new Battle;
+            $battle->user10 = $user;
+            $battle->save();
+            $this->redirect(Yii::app()->createUrl('battle/index'));
+        }
 		$this->render('create', array('user' => $user) );
 	}
 
@@ -76,6 +82,7 @@ class BattleController extends Controller
                     Yii::app()->clientScript->registerScriptFile('/js/lobby.js', CClientScript::POS_END);
                     $this->render('lobby', array('lobby' => $lobby));
                 }
+                $this->render('lobby', array('lobby' => array()));
 //                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
                 $user_number = $battle->getUserNumber($user_id);
@@ -83,7 +90,6 @@ class BattleController extends Controller
                 if($turn) {
                     if(!empty($_REQUEST)) {
                         $turn->processFormData($_REQUEST);
-
                     }
                     $turn = $turn->toTurnArrayForUser($user_id);
                 } else {
@@ -113,7 +119,9 @@ class BattleController extends Controller
 	public function actionJoin($id)
 	{
         $user_id = Yii::app()->user->id;
-        if(!is_numeric($id) || $id == $user_id)
+        if(!is_numeric($id) || $id == $user_id) {
+            throw new InvalidArgumentException;
+        }
         $battle = Battle::getBattleLobby($id);
         if ($battle) {
            if( empty($battle->user2) ) {
@@ -142,6 +150,24 @@ class BattleController extends Controller
 		$this->render('join');
 	}
 
+    public function actionLobbyList() {
+        $user_id = Yii::app()->user->id;
+        $user = User::model()->findByPk($user_id);
+        $battles = Battle::findLobbies();
+        if (isset($_POST['ajax']) ) {
+            $data = array();
+            foreach ($battles as $battle) {
+                $battle_data = array(
+                    'battle' => $battle->attributes,
+                    'user1' => $battle->user10->attlibutes
+                );
+                $data[] = $battle_data;
+            }
+            echo json_encode($data);
+        } else {
+            $this->render('lobbyList');
+        }
+    }
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

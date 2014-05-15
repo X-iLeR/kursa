@@ -35,7 +35,7 @@ class Battle extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user1, user2, time_begin', 'required'),
+			array('user1', 'required'),
 			array('user1, user2, time_begin, time_end, winner', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -238,6 +238,14 @@ class Battle extends CActiveRecord
         } else {
             $this->setWinner($this->user20);
         }
+        $this->save();
+    }
+
+    public static function findLobbies() {
+        $battles = Battle::model()->findAll('time_begin IS NULL');
+        if (empty ($battles))
+            $battles = array();
+        return $battles;
     }
 
 }

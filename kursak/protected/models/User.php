@@ -213,4 +213,9 @@ class User extends CActiveRecord
     }
 
     const POINTS_PER_LVL = 2;
+
+//    public function afterConstruct() {
+//        $this->setIsNewRecord(false);
+//        $this->save();
+//    }
 }
