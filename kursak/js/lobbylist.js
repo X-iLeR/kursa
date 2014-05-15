@@ -7,6 +7,8 @@ $().ready(function() {
     $('.lobby_list_row .join_lobby').click(function($this) {
         $el = $($this.currentTarget);
         $el.toggleClass('pending');
+        $el.removeClass('success');
+        $el.removeClass('error');
         tryJoin($el);
     });
 

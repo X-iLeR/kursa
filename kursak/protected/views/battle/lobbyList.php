@@ -34,6 +34,8 @@
                     data-battle="<?php echo $battle->id;?>"
                 >
                     <a class="btn btn-default" href="#">Предложить поединок</a>
+                    <span class="join-result-ico">&nbsp;</span>
+                    <span class="error-ico">&nbsp;</span>
                 </td>
             </tr>
         <?php endforeach; ?>

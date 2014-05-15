@@ -89,3 +89,25 @@ h1 {
 .parameter-add:hover, .parameter-add:active {
     text-decoration: none;
 }
+
+.join_lobby span.join-result-ico {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+.join_lobby.pending span.join-result-ico {
+    display: inline-block;
+    background: url('wait_red_black.gif');
+    background-size: contain;
+}
+
+.join_lobby.pending.success span.join-result-ico {
+    background: url('wait_chibi.gif');
+    background-size: contain;
+}
+
+.join_lobby.pending.error span.join-result-ico {
+    background: url('wait_red.gif');
+    background-size: contain;
+}

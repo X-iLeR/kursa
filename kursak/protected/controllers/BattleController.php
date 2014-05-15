@@ -9,11 +9,15 @@ class BattleController extends Controller
     public function actionAcceptOpponent($id)
 	{
         $battle = Battle::acceptBattle(Yii::app()->user->id, $id);
+        if(isset($_POST['ajax'])) {
             if($battle) {
                 echo json_encode(array('accepted' => 'true'));
                 return;
             }
-        echo json_encode(array('accepted' => 'false'));
+            echo json_encode(array('accepted' => 'false'));
+        } else {
+            $this->redirect(Yii::app()->createUrl('/battle'));
+        }
 	}
 
     /**
