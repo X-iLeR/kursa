@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 14 2014 г., 13:52
+-- Время создания: Май 15 2014 г., 20:57
 -- Версия сервера: 5.5.37-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4
 
@@ -36,14 +36,14 @@ CREATE TABLE IF NOT EXISTS `battle` (
   `time_begin` int(11) DEFAULT NULL,
   `time_end` int(11) DEFAULT NULL,
   `winner` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Дамп данных таблицы `battle`
 --
 
 INSERT INTO `battle` (`id`, `user1`, `user2`, `time_begin`, `time_end`, `winner`) VALUES
-(3, 11, 12, 1399942482, NULL, NULL);
+(11, 13, 11, 1400176574, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -61,14 +61,14 @@ CREATE TABLE IF NOT EXISTS `turn` (
   `damage1` int(11) DEFAULT NULL,
   `damage2` int(11) DEFAULT NULL,
   `finished` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Дамп данных таблицы `turn`
 --
 
 INSERT INTO `turn` (`id`, `battle_id`, `attack1`, `attack2`, `defense1`, `defense2`, `damage1`, `damage2`, `finished`) VALUES
-(1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(6, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `points` int(11) NOT NULL DEFAULT '3',
   `last_activity` int(11) DEFAULT NULL,
   `is_online` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Дамп данных таблицы `user`
@@ -99,7 +99,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `name`, `pwd`, `blocked`, `hp`, `strenght`, `agility`, `stamina`, `intuition`, `lvl`, `exp`, `points`, `last_activity`, `is_online`) VALUES
 (11, 'test', '7cbb3252ba6b7e9c422fac5334d22054', NULL, 5, 5, 5, 5, 5, 1, 0, 3, NULL, NULL),
-(12, 'test2', '7cbb3252ba6b7e9c422fac5334d22054', NULL, 5, 5, 5, 5, 5, 1, 0, 3, NULL, NULL);
+(12, 'test2', '7cbb3252ba6b7e9c422fac5334d22054', NULL, 5, 5, 5, 5, 5, 1, 0, 3, NULL, NULL),
+(13, 'test1', '7cbb3252ba6b7e9c422fac5334d22054', NULL, 10, 5, 5, 5, 5, 0, 20, 5, NULL, NULL),
+(14, 'test11', '7cbb3252ba6b7e9c422fac5334d22054', NULL, 0, 5, 5, 5, 5, 1, 0, 3, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -131,17 +133,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `battle`
 --
 ALTER TABLE `battle`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `turn`
 --
 ALTER TABLE `turn`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
