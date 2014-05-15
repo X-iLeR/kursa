@@ -25,4 +25,9 @@ class Helpers {
         }
     }
 
+    public static function returnJson ($answer) {
+        echo json_encode($answer);
+        die();
+    }
+
 } 

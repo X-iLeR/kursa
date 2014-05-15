@@ -4,7 +4,7 @@
 $().ready(function() {
 
    if ($('#turn_end') != null && $('#turn_end').val() == true) {
-       setTimeout(function() {window.location.refresh()}, 5000);
+       setTimeout(function() {window.location.refresh()}, 10000);
    }
 
 });

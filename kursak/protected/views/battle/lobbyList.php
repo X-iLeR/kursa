@@ -28,8 +28,12 @@
                 <td id="lobby_list_<?php echo $battle->id;?>_sta"><?php echo $battle->user10->stamina;?></td>
                 <td id="lobby_list_<?php echo $battle->id;?>_agi"><?php echo $battle->user10->agility;?></td>
                 <td id="lobby_list_<?php echo $battle->id;?>_int"><?php echo $battle->user10->intuition;?></td>
-                <td id="lobby_list_<?php echo $battle->id;?>_join">
-                    <a class="btn btn-sm ui-button" href="#">Предложить поединок</a>
+                <td id="lobby_list_<?php echo $battle->id;?>_join"
+                    class="join_lobby"
+                    data-user="<?php echo $battle->user1;?>"
+                    data-battle="<?php echo $battle->id;?>"
+                >
+                    <a class="btn btn-default" href="#">Предложить поединок</a>
                 </td>
             </tr>
         <?php endforeach; ?>

@@ -36,7 +36,7 @@ class BattleController extends Controller
             $data = array('user2' => $battle->user20->attributes);
         }
         if(isset($_POST['ajax'])) {
-            echo json_encode($data);
+            Helpers::returnJson($data);
         } else {
             $this->render('checkOpponent', array ('battle' => $battle,'user1' => $user, 'user2' => $battle->user20) );
         }
@@ -127,30 +127,31 @@ class BattleController extends Controller
            if( empty($battle->user2) ) {
                $battle->user2 = $user_id;
                $battle->validate() && $battle->save();
-               echo json_encode(array('status'=>'joined'));
+               Helpers::returnJson(array('status'=>'joined'));
            } else {
                if($battle->user2 == $user_id) {
                    if(!empty($battle->time_begin)) {
-                       echo json_encode( array('status' => 'started') );
+                       Helpers::returnJson( array('status' => 'started') );
                    } else {
-                       echo json_encode( array('status' => 'waiting') );
+                       Helpers::returnJson( array('status' => 'waiting') );
                    }
                } else {
                    if(!empty($battle->time_begin)) {
-                       echo json_encode( array('status' => 'another'));
+                       Helpers::returnJson( array('status' => 'another'));
                    } else {
-                       echo json_encode( array('status' => 'closed'));
+                       Helpers::returnJson( array('status' => 'closed'));
                    }
                }
            }
         } else {
-            echo json_encode( array( 'status' => 'false'));
+            Helpers::returnJson( array( 'status' => 'false'));
         }
 
 		$this->render('join');
 	}
 
     public function actionLobbyList() {
+        Yii::app()->clientScript->registerScriptFile('/js/lobbylist.js', CClientScript::POS_END);
         $user_id = Yii::app()->user->id;
         $user = User::model()->findByPk($user_id);
         $battles = Battle::findLobbies();
@@ -163,7 +164,7 @@ class BattleController extends Controller
                 );
                 $data[] = $battle_data;
             }
-            echo json_encode($data);
+            Helpers::returnJson($data);
         } else {
             $this->render('lobbyList', array('battles'=>$battles));
         }
