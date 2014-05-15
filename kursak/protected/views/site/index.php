@@ -11,7 +11,7 @@ $user = User::model()->findByPk( Yii::app()->user->id);
     <h3><?php echo "Жизни: " .  $user->hp . "/" . $user->getmaxHp();?></h3>
     <h4><?php echo"Уровень: " . $user->lvl;?></h4>
     <h4><?php echo"Опыта: " . $user->exp;?></h4>
-    <h4><?php echo"Очков осталось: " . $user->points;?></h4>
+    <h4>Очков осталось: <span id="points"><?php echo $user->points;?></span></h4>
     <div class="user-attributes">
 
         <p>Сила:        <?php echo $user->strenght ;?>      <a id="strength_add" class="parameter-add">&nbsp;</a> </p>

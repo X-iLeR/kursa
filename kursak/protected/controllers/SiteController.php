@@ -28,8 +28,9 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
         if(Yii::app()->user->isGuest) {
-            $this->redirect(Yii::app()->createUrl('site/register'));
+            $this->redirect(Yii::app()->createUrl('login'));
         } else {
+            Yii::app()->clientScript->registerScriptFile('/js/addAttribute.js', CClientScript::POS_END);
             $this->render('index');
         }
 	}

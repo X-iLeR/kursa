@@ -211,32 +211,34 @@ class User extends CActiveRecord
         $this->save();
         return $this;
     }
-    public  function addAttribute($atr_name){
+    public function addAttribute($atr_name){
         if($this->points>0){
-            if($atr_name == strength){
+
+            if($atr_name == 'strength'){
                 $this->points-=1;
                 $this->strenght+=1;
             }
-            elseif($atr_name == stamina){
+            elseif($atr_name == 'stamina'){
                 $this->points-=1;
                 $this->stamina+=1;
             }
-            elseif($atr_name == agility){
+            elseif($atr_name == 'agility'){
                 $this->points-=1;
                 $this->agility+=1;
             }
-            elseif($atr_name == intuition){
+            elseif($atr_name == 'intuition'){
                 $this->points-=1;
                 $this->intuition+=1;
             }
             else{throw new InvalidArgumentException;}
+
+            $this->save();
         }
     }
 
     const POINTS_PER_LVL = 2;
 
-//    public function afterConstruct() {
-//        $this->setIsNewRecord(false);
-//        $this->save();
-//    }
+    public function afterConstruct() {
+        $this->save();
+    }
 }
