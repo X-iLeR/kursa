@@ -52,7 +52,7 @@
     <?php endif; ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php echo CHtml::submitButton('Зарегистрировать'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
