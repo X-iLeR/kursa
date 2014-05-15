@@ -57,7 +57,6 @@ echo "Интуиция: " . $user->intuition . "<br>";
         <label for="defense4">Ноги и голову</label>
         <input type="radio" id="defense4" name="defense" value="4" checked="<?php Helpers::echoBool($turn['defense'] == 4); ?>">
     </div>
-
 </form>
 </div>
     <div class="col-xs-3">
