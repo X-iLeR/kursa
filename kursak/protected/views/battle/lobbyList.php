@@ -7,7 +7,7 @@
 ?>
 
 <div id="lobby_list">
-    <table class="text-center" id="lobby_list_table">
+    <table id="lobby_list_table">
         <thead id="lobby_list_thead">
             <tr id="lobby_list_thead_tr">
                 <th id="lobby_list_th_name">Персонаж</th>

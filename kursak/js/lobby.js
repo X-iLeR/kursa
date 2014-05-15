@@ -19,6 +19,7 @@ var checkOpponent = function(user_id) {
         }).success(function(data) {
             var response = JSON.parse(data);
             if(undefined !== typeof response && response['user2'] != 'false') {
+               addOpponent(response['user2']);
                console.log(response['user2']);
             } else {
                 console.log('Waiting for opponent...');
@@ -34,4 +35,25 @@ var checkOpponent = function(user_id) {
         });
 
     }
+}
+
+var addOpponent = function(opponent) {
+    var $tbody = $('#lobby_guests_tbody');
+    var td_id_prefix = 'lobby_guests_' + opponent['id'] + '_';
+    var $tr = $('<tr class="lobby_guests_row" id="lobby_guests_row_' + opponent['id'] + '">' +
+        '</tr>');
+    $tr.append('<td id="' + td_id_prefix + 'name">' + opponent['name'] + '</td>');
+    $tr.append('<td id="' + td_id_prefix + 'lvl">' + opponent['lvl'] + '</td>');
+    $tr.append('<td id="' + td_id_prefix + 'str">' + opponent['strenght'] + '</td>');
+    $tr.append('<td id="' + td_id_prefix + 'sta">' + opponent['stamina'] + '</td>');
+    $tr.append('<td id="' + td_id_prefix + 'agi">' + opponent['agility'] + '</td>');
+    $tr.append('<td id="' + td_id_prefix + 'int">' + opponent['intuition'] + '</td>');
+    $tr.append(
+        '<td id="' + td_id_prefix + 'accept" ' +
+        'class="accept_opponent" ' +
+        'data-user="' + opponent['id'] + '" >' +
+        '<a class="btn btn-default" href="/battle/acceptOpponent/' + opponent['id'] + '" >Принять вызов</a>' +
+           '<span class="join-result-ico">&nbsp;</span></td>'
+    );
+    $tbody.append($tr);
 }

@@ -85,8 +85,9 @@ class BattleController extends Controller
                 if($lobby) {
                     Yii::app()->clientScript->registerScriptFile('/js/lobby.js', CClientScript::POS_END);
                     $this->render('lobby', array('lobby' => $lobby));
+                } else {
+                    $this->render('lobby', array('lobby' => array()));
                 }
-                $this->render('lobby', array('lobby' => array()));
 //                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
                 $user_number = $battle->getUserNumber($user_id);
