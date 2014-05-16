@@ -117,3 +117,7 @@ h1 {
     background: url('wait_red.gif');
     background-size: contain;
 }
+
+.bold {
+    font-weight: bold;
+}

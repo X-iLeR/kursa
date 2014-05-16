@@ -75,6 +75,7 @@ class BattleController extends Controller
      */
 	public function actionIndex()
 	{
+        Yii::app()->clientScript->registerScriptFile('/js/battle_log.js', CClientScript::POS_HEAD);
         $user_id = Yii::app()->user->isGuest ? false : Yii::app()->user->id;
 
         if(!empty ($user_id)) {

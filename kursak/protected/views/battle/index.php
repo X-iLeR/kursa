@@ -72,3 +72,10 @@ echo "Интуиция: " . $user->intuition . "<br>";
 </p>
 </div>
 </div>
+<div class="panel-footer" id="system_chat">
+    <h2>Системный чат: </h2>
+</div>
+<script type="javascript">
+    text2chat(damage_text('van9', 'голова', 9));
+    text2chat(damage_text('van0', 'голова', 0));
+</script>
