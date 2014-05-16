@@ -136,21 +136,22 @@ class BattleController extends Controller
                Helpers::returnJson(array('status'=>'joined'));
            } else {
                if($battle->user2 == $user_id) {
-                   if(!empty($battle->time_begin)) {
-                       Helpers::returnJson( array('status' => 'started') );
-                   } else {
                        Helpers::returnJson( array('status' => 'waiting') );
-                   }
                } else {
-                   if(!empty($battle->time_begin)) {
                        Helpers::returnJson( array('status' => 'another'));
-                   } else {
-                       Helpers::returnJson( array('status' => 'closed'));
-                   }
                }
            }
         } else {
-            Helpers::returnJson( array( 'status' => 'false'));
+            $battle = Battle::getActiveBattle($id);
+            if($battle) {
+                if($battle->user2 == $user_id) {
+                    Helpers::returnJson( array('status' => 'started') );
+                } else {
+                    Helpers::returnJson( array('status' => 'closed'));
+                }
+            } else {
+                Helpers::returnJson( array( 'status' => 'false'));
+            }
         }
 
 		$this->render('join');

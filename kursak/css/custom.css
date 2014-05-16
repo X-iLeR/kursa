@@ -121,3 +121,11 @@ h1 {
 .bold {
     font-weight: bold;
 }
+
+.attack-choices input {
+    float: right;
+}
+
+.defense-choices input {
+    float: left;
+}

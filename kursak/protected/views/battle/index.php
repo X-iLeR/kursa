@@ -34,28 +34,44 @@ echo "Интуиция: " . $user->intuition . "<br>";
 <form method="post">
     <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id;?>">
     <input type="hidden" id="time_begin" name="time_begin" value="<?php echo $battle->time_begin;?>">
-    <div class="col-xs-5">
-        <label for="attack1">Голова</label>
-        <input type="radio" id="attack1" name="attack" value="1" checked="<?php Helpers::echoBool($turn['attack'] == 1); ?>">
-        <label for="attack2">Грудь</label>
-        <input type="radio" id="attack2" name="attack" value="2" checked="<?php Helpers::echoBool($turn['attack'] == 2); ?>">
-        <label for="attack3">Живот</label>
-        <input type="radio" id="attack3" name="attack" value="3" checked="<?php Helpers::echoBool($turn['attack'] == 3); ?>">
-        <label for="attack4">Ноги</label>
-        <input type="radio" id="attack4" name="attack" value="4" checked="<?php Helpers::echoBool($turn['attack'] == 4); ?>">
+    <div class="col-xs-5 attack-choices">
+        <div class="action-choice">
+            <label for="attack1">Голова</label>
+            <input type="radio" id="attack1" name="attack" value="1" checked="<?php Helpers::echoBool($turn['attack'] == 1); ?>">
+        </div>
+        <div class="action-choice">
+            <label for="attack2">Грудь</label>
+            <input type="radio" id="attack2" name="attack" value="2" checked="<?php Helpers::echoBool($turn['attack'] == 2); ?>">
+        </div>
+        <div class="action-choice">
+            <label for="attack3">Живот</label>
+            <input type="radio" id="attack3" name="attack" value="3" checked="<?php Helpers::echoBool($turn['attack'] == 3); ?>">
+        </div>
+        <div class="action-choice">
+            <label for="attack4">Ноги</label>
+            <input type="radio" id="attack4" name="attack" value="4" checked="<?php Helpers::echoBool($turn['attack'] == 4); ?>">
+        </div>
     </div>
     <div class="col-xs-2">
         <input type="submit" id="moveSubmit" name="moveSubmit" value="Submit">
+    </div>
+    <div class="col-xs-5 defense-choices">
+        <div class="action-choice">
+            <label for="defense1">Голова и грудь</label>
+            <input type="radio" id="defense1" name="defense" value="1" checked="<?php Helpers::echoBool($turn['defense'] == 1); ?>">
         </div>
-    <div class="col-xs-5">
-        <label for="defense1">Голова и грудь</label>
-        <input type="radio" id="defense1" name="defense" value="1" checked="<?php Helpers::echoBool($turn['defense'] == 1); ?>">
-        <label for="defense2">Грудь и живот</label>
-        <input type="radio" id="defense2" name="defense" value="2" checked="<?php Helpers::echoBool($turn['defense'] == 2); ?>">
-        <label for="defense3">Живот и ноги</label>
-        <input type="radio" id="defense3" name="defense" value="3" checked="<?php Helpers::echoBool($turn['defense'] == 3); ?>">
-        <label for="defense4">Ноги и голову</label>
-        <input type="radio" id="defense4" name="defense" value="4" checked="<?php Helpers::echoBool($turn['defense'] == 4); ?>">
+        <div class="action-choice">
+            <label for="defense2">Грудь и живот</label>
+            <input type="radio" id="defense2" name="defense" value="2" checked="<?php Helpers::echoBool($turn['defense'] == 2); ?>">
+        </div>
+        <div class="action-choice">
+            <label for="defense3">Живот и ноги</label>
+            <input type="radio" id="defense3" name="defense" value="3" checked="<?php Helpers::echoBool($turn['defense'] == 3); ?>">
+        </div>
+        <div class="action-choice">
+            <label for="defense4">Ноги и голову</label>
+            <input type="radio" id="defense4" name="defense" value="4" checked="<?php Helpers::echoBool($turn['defense'] == 4); ?>">
+        </div>
     </div>
 </form>
 </div>
