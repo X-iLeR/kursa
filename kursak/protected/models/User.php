@@ -231,7 +231,7 @@ class User extends CActiveRecord
                 $this->intuition+=1;
             }
             else{throw new InvalidArgumentException;}
-
+            $this->setIsNewRecord(false);
             $this->save();
         }
     }

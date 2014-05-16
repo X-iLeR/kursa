@@ -6,6 +6,7 @@ $().ready(function() {
 
         var points = parseInt($('#points').text());
         var $el = $($this.currentTarget);
+        var attr_points = parseInt($el.text());
         var attr = $el.attr('id');
         attr = attr.replace('_add', '');
 
@@ -16,6 +17,8 @@ $().ready(function() {
                 ajax: 'ajax',
                 attr: attr
             }
+        }).done(function() {
+            window.location.reload();
         });
 
     });
