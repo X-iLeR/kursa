@@ -67,6 +67,17 @@
 
 
 </div><!-- page -->
+
+<?php if(in_array(Yii::app()->controller->id , Yii::app()->params['CONTROLLERS_WITH_CHAT']) ): ?>
+<div class="clear"></div>
+<div class="panel-footer clear" id="system_chat_block">
+    <h2 class="center-block text-center">Системный чат: </h2>
+    <div id="system_chat" class="col-xs-12">
+        <p>&nbsp;</p>
+    </div>
+</div>
+<?php endif; ?>
+
 <div class="clear"></div>
 
 <footer style="display: none";>

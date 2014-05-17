@@ -82,6 +82,9 @@ h1 {
     padding-left: 18px;
 }
 
+.padding-no { padding: 0 !important;}
+
+
 .parameter-add {
     float: right;
     background: url("plus_green.gif");
@@ -124,6 +127,7 @@ h1 {
 
 .attack-choices input {
     float: left;
+    width: 30%;
 }
 
 /*.defense-choices input, */.defense-choices label {
@@ -135,9 +139,47 @@ h1 {
  width: 100%;
 }
 
-#lobby_list_thead_tr th, #lobby_list td {
+#user_block2 {
+    float: right;
+}
+
+#system_chat_block {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    background: #EFFEED;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+#system_chat_block h2 {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#system_chat {
+    max-height: 6em;
+    overflow: auto;
+    padding-top: 0.5em;
+    background: rgb(230, 240, 210);
+    float: none;
+}
+
+
+
+
+#lobby_list_thead_tr th,
+#lobby_list td,
+#lobby_guests_thead_tr th,
+#lobby_guests_tbody td {
     text-align: center;
 }
+
+.chat-message span {
+    font-weight: bolder;
+    font-family: gubblefont, GubbleBum Blocky, GubbleBum, monospace;
+}
+
 
 @media (max-width: 1100px) {
     #page {max-width: 900px;}
@@ -148,14 +190,16 @@ h1 {
 @media (max-width: 770px) {
     #page {max-width: 700px;}
 
-    #lobby_list_thead_tr th {
+    #lobby_list_thead_tr th,
+    #lobby_guests_thead_tr th {
         font-size: 1px;
         color: transparent;
         min-width: 40px;
         height: 40px;
         background: transparent;
     }
-    #lobby_list td.join_lobby a.btn {
+    #lobby_list td.join_lobby a.btn,
+    #lobby_guests_tbody td.accept_opponent a.btn {
         font-size: 1px;
         color: transparent;
         min-width: 40px;
@@ -164,28 +208,34 @@ h1 {
         border: none;
     }
     #lobby_list td.join_lobby a.btn:hover,
-    #lobby_list td.join_lobby a.btn:active {
+    #lobby_list td.join_lobby a.btn:active,
+    #lobby_guests_tbody td.accept_opponent a.btn:hover,
+    #lobby_guests_tbody td.accept_opponent a.btn:active {
         border: none;
         box-shadow: none;
         -webkit-box-shadow: none;
     }
 
-    #lobby_list_thead_tr th#lobby_list_th_name {background: url("name.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_name,
+    th#lobby_guests_th_name {background: url("name.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list_thead_tr th#lobby_list_th_lvl {background: url("exp.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_lvl,
+    th#lobby_guests_th_lvl {background: url("exp.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list_thead_tr th#lobby_list_th_str {background: url("strength.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_str,
+    th#lobby_guests_th_str {background: url("strength.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list_thead_tr th#lobby_list_th_sta {background: url("stamina.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_sta,
+    th#lobby_guests_th_sta {background: url("stamina.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list_thead_tr th#lobby_list_th_agi {background: url("agility.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_agi,
+    th#lobby_guests_th_agi {background: url("agility.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list_thead_tr th#lobby_list_th_int {background: url("intuition.png");  background-position: center; background-size: contain;
+    #lobby_list_thead_tr th#lobby_list_th_int,
+    th#lobby_guests_th_int {background: url("intuition.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
-    #lobby_list td.join_lobby {background: url("horn.png");  background-position: center; background-size: contain;
+    #lobby_list td.join_lobby,
+    #lobby_guests_tbody td.accept_opponent {background: url("horn.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
 
-    #battle_actions_block {
-        float: right;
-    }
 }

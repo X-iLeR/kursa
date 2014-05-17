@@ -32,7 +32,8 @@ if(empty ($battles)) {
         </tr>
         </thead>
         <tbody id="lobby_guests_tbody">
-        <?php foreach($battles as $b):?>
+        <?php
+        foreach($battles as $b):?>
             <tr class="lobby_guests_row" id="lobby_guests_row_<?php echo $b->user2;?>">
                 <td id="lobby_guests_<?php echo $b->user2;?>_name"><?php echo $b->user20->name;?></td>
                 <td id="lobby_guests_<?php echo $b->user2;?>_lvl"><?php echo $b->user20->lvl;?></td>

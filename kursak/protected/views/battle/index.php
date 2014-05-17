@@ -50,7 +50,7 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
         <form method="post">
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id;?>">
             <input type="hidden" id="time_begin" name="time_begin" value="<?php echo $battle->time_begin;?>">
-            <div class="col-xs-5 attack-choices">
+            <div class="col-xs-4 attack-choices">
                 <div class="action-choice">
                     <label for="attack1">Голова</label>
                     <input type="radio" id="attack1" name="attack" value="1" checked="<?php Helpers::echoBool($turn['attack'] == 1); ?>">
@@ -68,10 +68,10 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
                     <input type="radio" id="attack4" name="attack" value="4" checked="<?php Helpers::echoBool($turn['attack'] == 4); ?>">
                 </div>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-2 padding-no">
                 <input type="submit" id="moveSubmit" name="moveSubmit" value="Submit">
             </div>
-            <div class="col-xs-5 defense-choices">
+            <div class="col-xs-6 defense-choices">
                 <div class="action-choice">
                     <label for="defense1">Голова и грудь</label>
                     <input type="radio" id="defense1" name="defense" value="1" checked="<?php Helpers::echoBool($turn['defense'] == 1); ?>">
@@ -94,9 +94,12 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
 
 </div>
 
-<div class="panel-footer clear" id="system_chat">
+<!--<div class="panel-footer clear" id="system_chat_block">
     <h2 class="center-block text-center">Системный чат: </h2>
-</div>
+    <div id="system_chat" class="col-xs-12">
+        <p>&nbsp;</p>
+    </div>
+</div>-->
 
 
 <script type="javascript">
