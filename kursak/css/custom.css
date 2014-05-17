@@ -123,9 +123,69 @@ h1 {
 }
 
 .attack-choices input {
-    float: right;
+    float: left;
 }
 
-.defense-choices input {
-    float: left;
+/*.defense-choices input, */.defense-choices label {
+    width: 70%;
+}
+
+#page {
+ max-width: 1100px;
+ width: 100%;
+}
+
+#lobby_list_thead_tr th, #lobby_list td {
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+    #page {max-width: 900px;}
+}
+@media (max-width: 900px) {
+    #page {max-width: 770px;}
+}
+@media (max-width: 770px) {
+    #page {max-width: 700px;}
+
+    #lobby_list_thead_tr th {
+        font-size: 1px;
+        color: transparent;
+        min-width: 40px;
+        height: 40px;
+        background: transparent;
+    }
+    #lobby_list td.join_lobby a.btn {
+        font-size: 1px;
+        color: transparent;
+        min-width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+    }
+    #lobby_list td.join_lobby a.btn:hover,
+    #lobby_list td.join_lobby a.btn:active {
+        border: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+    #lobby_list_thead_tr th#lobby_list_th_name {background: url("name.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list_thead_tr th#lobby_list_th_lvl {background: url("exp.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list_thead_tr th#lobby_list_th_str {background: url("strength.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list_thead_tr th#lobby_list_th_sta {background: url("stamina.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list_thead_tr th#lobby_list_th_agi {background: url("agility.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list_thead_tr th#lobby_list_th_int {background: url("intuition.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+    #lobby_list td.join_lobby {background: url("horn.png");  background-position: center; background-size: contain;
+        background-repeat: no-repeat; }
+
+    #battle_actions_block {
+        float: right;
+    }
 }

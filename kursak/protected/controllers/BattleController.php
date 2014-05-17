@@ -92,6 +92,13 @@ class BattleController extends Controller
 //                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
                 $user_number = $battle->getUserNumber($user_id);
+
+                $last_turn = Turn::getLast($battle->id);
+                if(!$last_turn) { //Если не было ходов раньше - значит пора восстановит ХП, например
+                    $battle->user10->prepareForBattle();
+                    $battle->user20->prepareForBattle();
+                }
+
                 $turn = Turn::getCurrent($battle->id);
                 if($turn) {
                     if(!empty($_REQUEST)) {

@@ -236,6 +236,12 @@ class User extends CActiveRecord
         }
     }
 
+    public function prepareForBattle() {
+        $this->hp = $this->getMaxHp();
+        $this->setIsNewRecord(false);
+        $this->save();
+    }
+
     const POINTS_PER_LVL = 2;
 
     public function afterConstruct() {

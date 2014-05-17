@@ -191,7 +191,8 @@ class Turn extends CActiveRecord
         }
         if($this->isEnded()) {
             $this->process();
-            $this->finished = true;
+            $this->finished = time();
+            $this->createNext();
         }
         $this->validate() && $this->save();
         return $this;
@@ -228,6 +229,8 @@ class Turn extends CActiveRecord
             } else {
                 $this->battle->setWinnerByNumber(1);
             }
+        } else {
+            $this->save();
         }
     }
 
@@ -254,6 +257,13 @@ class Turn extends CActiveRecord
         }
 
         return ($defense == $attack || $defense == ($attack - 1 + Turn::BODY_SECTIONS_COUNT) % (Turn::BODY_SECTIONS_COUNT + 1));
+    }
+
+    public function createNext() {
+        $next = new Turn();
+        $next->battle_id = $this->battle_id;
+        $next->save();
+        return $next;
     }
 
 }

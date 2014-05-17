@@ -43,8 +43,6 @@ var tryJoin = function($el) {
                         'Ждем ответа от ' +
                         $('#lobby_list_' + battle_id + '_name').text()
                     );
-                    setTimeout(function() {tryJoin($el)}, 10000);
-                    break;
 //                case 'another':
 //                case 'closed':
                 default :
@@ -54,15 +52,13 @@ var tryJoin = function($el) {
             }
         } else {
             console.log('Waiting for opponent...');
-            setTimeout(function() {tryJoin($el)}, 10000);
         }
         $el.addClass( "success" );
-//            window.location.reload();
     }).error(function() {
+//        $el.removeClass("pending");
         $el.addClass( "error" );
-//        setTimeout(function() {tryJoin(foe_id)}, 10000);
     }).done(function() {
-//        $( this ).addClass( "done" );
+        setTimeout(function() {tryJoin($el)}, 10000);
     });
 
 }
