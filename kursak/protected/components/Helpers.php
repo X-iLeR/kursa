@@ -41,4 +41,30 @@ class Helpers {
         die();
     }
 
+    public static function secs_to_str($secs)
+    {
+        $units = array(
+            "нед"   => 7*24*3600,
+            "дн"    =>   24*3600,
+            "ч"   =>      3600,
+            "мин" =>        60,
+            "сек" =>         1,
+        );
+
+        // specifically handle zero
+        if ( $secs == 0 ) return "0 секунд";
+
+        $s = "";
+
+        foreach ( $units as $name => $divisor ) {
+            if ( $quot = intval($secs / $divisor) ) {
+                $s .= "$quot $name";
+                $s .= /*(abs($quot) > 1 ? "s" : "") . */  ", ";
+                $secs -= $quot * $divisor;
+            }
+        }
+
+        return substr($s, 0, -2);
+    }
+
 } 

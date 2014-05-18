@@ -192,7 +192,9 @@ class Turn extends CActiveRecord
         if($this->isEnded()) {
             $this->process();
             $this->finished = time();
-            $this->createNext();
+            if(!$this->battle->isEnded()) {
+                $this->createNext();
+            }
         }
         $this->validate() && $this->save();
         return $this;
@@ -256,7 +258,7 @@ class Turn extends CActiveRecord
             return false;
         }
 
-        return ($defense == $attack || $defense == ($attack - 1 + Turn::BODY_SECTIONS_COUNT) % (Turn::BODY_SECTIONS_COUNT + 1));
+        return ($defense == $attack || $defense == ($attack + 1 ) % (Turn::BODY_SECTIONS_COUNT + 1));
     }
 
     public function createNext() {
@@ -282,7 +284,10 @@ class Turn extends CActiveRecord
     }
 
     public static function findAllByBattle($battle_id) {
-        $turns = Turn::model()->findAll('battle_id = battle_id ORDER BY id ASC');
+        $turns = Turn::model()->findAll(
+            'battle_id = :battle_id ORDER BY id ASC',
+            array('battle_id' => $battle_id)
+        );
         if (empty ($turns) ) {
             return array();
         } else {

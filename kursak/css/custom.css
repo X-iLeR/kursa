@@ -43,7 +43,24 @@ nav ul li a{
     padding: 0 7px;
 
 }
-nav ul li:hover {background: #ccc;}
+nav ul li:hover {
+    background: #341;
+    border-left: 1px solid #666;
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #EEE;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.75em;
+    border-top-left-radius: 0.75em;
+}
+
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a {
+    color: #78C;
+    background-color: #341;
+    border-radius: 1em;
+    text-decoration: none;
+}
 a {
     text-decoration: none;
 }
@@ -244,4 +261,26 @@ h1 {
     #lobby_guests_tbody td.accept_opponent {background: url("horn.png");  background-position: center; background-size: contain;
         background-repeat: no-repeat; }
 
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.battle-results span {
+    font-weight: bolder;
+    width: 40%;
+    display: inline-block;
+}
+
+@media (max-width: 500px) {
+    .battle-results span {
+        width: 100%;
+    }
+}
+
+@media (min-width: 500px) {
+    .battle-results span {
+        width: 220px;
+    }
 }

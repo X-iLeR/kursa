@@ -74,9 +74,13 @@ class BattleController extends Controller
         } else {
             $battle = Battle::model()->findByPk($id);
         }
+        $results = new BattleResults;
+        $results->battle_id = $battle->id;
+        $results->battle = $battle;
+        $results->process();
 
 		$this->render('results', array(
-            'battle' => $battle
+            'results' => $results
             )
         );
 	}
@@ -98,6 +102,7 @@ class BattleController extends Controller
                     Yii::app()->clientScript->registerScriptFile('/js/lobby.js', CClientScript::POS_END);
                     $this->render('lobby', array('lobby' => $lobby));
                 } else {
+                    $this->redirect(Yii::app()->createUrl('battle/results'));
                     $this->render('lobby', array('lobby' => array()));
                 }
 //                $this->redirect(Yii::app()->createUrl('site/index'));
@@ -114,9 +119,9 @@ class BattleController extends Controller
                 if($turn) {
                     if(!empty($_REQUEST)) {
                         $turn->processFormData($_REQUEST);
-                        if($battle->isEnded()) {
+                        if($turn->battle->isEnded()) {
                             $this->redirect(
-                                Yii::app()->createUrl('battle/results/'.$battle->id)
+                                Yii::app()->createUrl('battle/results/'.$turn->battle_id)
                             );
                         } else {
                             $this->refresh();

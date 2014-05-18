@@ -241,7 +241,7 @@ class Battle extends CActiveRecord
         }
         $this->setIsNewRecord(false);
         $winner->addExp(Battle::DEFAULT_XP);
-        $this->winner0 = $winner->id;
+        $this->winner = $winner->id;
         $this->time_end = time();
         $this->save();
     }
@@ -266,7 +266,7 @@ class Battle extends CActiveRecord
     }
 
     public function isEnded() {
-        return !empty($this->time_end) && ($this->time_end > time() );
+        return !empty($this->time_end) && ($this->time_end < time() );
     }
 
     public function getTurns() {

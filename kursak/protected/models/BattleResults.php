@@ -52,12 +52,25 @@ class BattleResults {
             $this->evade1 = 0;
             $this->evade2 = 0;
 
+            foreach ($this->turns as $turn) {
+                /** @var Turn $turn */
+                if ($turn->damage1) {
+                    $this->damage1 += $turn->damage1;
+                    $this->hits1++;
+                } else {
+                    $this->evade2++;
+                }
 
+                if ($turn->damage2) {
+                    $this->damage2 += $turn->damage2;
+                    $this->hits2++;
+                } else {
+                    $this->evade1++;
+                }
+            }
         } else {
             throw new UnexpectedValueException("Нужно указать battle_id прежде чем находить результаты боя");
         }
-
-
         return $this;
     }
 
