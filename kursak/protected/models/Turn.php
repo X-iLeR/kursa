@@ -281,4 +281,12 @@ class Turn extends CActiveRecord
         }
     }
 
+    public static function findAllByBattle($battle_id) {
+        $turns = Turn::model()->findAll('battle_id = battle_id ORDER BY id ASC');
+        if (empty ($turns) ) {
+            return array();
+        } else {
+            return $turns;
+        }
+    }
 }

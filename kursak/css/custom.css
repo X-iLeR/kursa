@@ -145,11 +145,19 @@ h1 {
 
 #system_chat_block {
     position: absolute;
-    bottom: 25px;
+    bottom: 5px;
     width: 100%;
     background: #EFFEED;
     border-bottom-left-radius: 2em;
     border-bottom-right-radius: 2em;
+}
+@media (max-height: 610px) {
+    #system_chat_block {
+        position: relative;
+    }
+    header {
+        display: none;
+    }
 }
 
 #system_chat_block h2 {

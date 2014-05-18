@@ -161,6 +161,7 @@ class User extends CActiveRecord
         if (!is_numeric($amount)) {
             throw new InvalidArgumentException;
         }
+        $this->setIsNewRecord(false);
         if($amount > $this->hp) {
             $this->hp = 0;
         } elseif ($amount > 0) {
@@ -174,6 +175,7 @@ class User extends CActiveRecord
 
 
     public function addExp($amount) {
+        $this->setIsNewRecord(false);
         if(! is_numeric($amount) || $amount < 0 ) {
             throw new InvalidArgumentException;
         }
@@ -185,12 +187,15 @@ class User extends CActiveRecord
     }
 
     public function checkLvlup() {
-        $updated = (int)floor($this->exp/100);
-        if($updated != $this->lvl) {
+        $updated = 1 + (int)floor($this->exp/50);
+        if($updated > $this->lvl) {
+            $levels_gained = $updated - $this->lvl;
             $this->lvl = $updated;
-            $this->addPoints(User::POINTS_PER_LVL);
+            $this->addPoints($levels_gained * User::POINTS_PER_LVL);
             $this->save();
             return true;
+        } elseif ($updated < $this->lvl) {
+            throw new UnexpectedValueException;
         }
         return false;
     }
@@ -241,6 +246,14 @@ class User extends CActiveRecord
         $this->hp = $this->getMaxHp();
         $this->setIsNewRecord(false);
         $this->save();
+    }
+
+    public function getLastBattle() {
+        $battle = Battle::getLastFinishedBattle($this->id);
+        if (empty ($battle)) {
+            return false;
+        }
+        return $battle;
     }
 
     const POINTS_PER_LVL = 2;

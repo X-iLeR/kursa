@@ -65,9 +65,20 @@ class BattleController extends Controller
     /**
      * TODO запилить страницу или функцию получения статистики боя
      */
-	public function actionGetResults($id)
+	public function actionResults($id = null)
 	{
-		$this->render('getResults');
+        $user_id = Yii::app()->user->id;
+        $user = User::model()->findByPk($user_id);
+        if (empty($id)) {
+            $battle = $user->getLastBattle();
+        } else {
+            $battle = Battle::model()->findByPk($id);
+        }
+
+		$this->render('results', array(
+            'battle' => $battle
+            )
+        );
 	}
 
     /**
@@ -103,6 +114,13 @@ class BattleController extends Controller
                 if($turn) {
                     if(!empty($_REQUEST)) {
                         $turn->processFormData($_REQUEST);
+                        if($battle->isEnded()) {
+                            $this->redirect(
+                                Yii::app()->createUrl('battle/results/'.$battle->id)
+                            );
+                        } else {
+                            $this->refresh();
+                        }
                     }
                     $turn = $turn->toTurnArrayForUser($user_id);
                 } else {

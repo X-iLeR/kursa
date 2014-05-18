@@ -25,6 +25,17 @@ class Helpers {
         }
     }
 
+    public static function echoIfTrue($text, $condition = true) {
+        if(!isset($text)) {
+            $text = '';
+        }
+        if( $condition) {
+            echo($text);
+            return $text;
+        }
+        return false;
+    }
+
     public static function returnJson ($answer) {
         echo json_encode($answer);
         die();

@@ -131,6 +131,21 @@ class Battle extends CActiveRecord
         return $activeBattle;
     }
 
+    public static function getLastFinishedBattle($user_id) {
+        $lastBattle =  Battle::model()->find(
+            'time_end IS NOT NULL AND
+              (user1=:user_id OR user2=:user_id)
+              ORDER BY time_end DESC',
+            array("user_id" => $user_id,
+                'now' => time()
+            )
+        );
+        if(empty($lastBattle)) {
+            return false;
+        }
+        return $lastBattle;
+    }
+
     /**
      * Возвращает лобби битвы, которую создал игрок
      * либо false если игрок вне лобби
@@ -205,6 +220,7 @@ class Battle extends CActiveRecord
         if(!is_numeric($winner_id)) {
             throw new InvalidArgumentException;
         }
+        $this->setIsNewRecord(false);
         if ($winner_id == $this->user1) {
             $winner = $this->user10;
         } elseif ($winner_id == $this->user2) {
@@ -247,6 +263,15 @@ class Battle extends CActiveRecord
         if (empty ($battles))
             $battles = array();
         return $battles;
+    }
+
+    public function isEnded() {
+        return !empty($this->time_end) && ($this->time_end > time() );
+    }
+
+    public function getTurns() {
+        $turns = Turn::findAllByBattle($this->id);
+        return $turns;
     }
 
 }
