@@ -260,10 +260,25 @@ class Turn extends CActiveRecord
     }
 
     public function createNext() {
-        $next = new Turn();
-        $next->battle_id = $this->battle_id;
-        $next->save();
+        $next = $this->getNext();
+        if(! $next) {
+            $next = new Turn();
+            $next->battle_id = $this->battle_id;
+            $next->save();
+        }
         return $next;
+    }
+
+    public function getNext() {
+        $next = Turn::model()->find('id > :id AND battle_id = :battle_id ORDER BY id DESC', array(
+            'id' => $this->id,
+            'battle_id' => $this->battle_id
+        ));
+        if (empty ($next)) {
+            return false;
+        } else {
+            return $next;
+        }
     }
 
 }

@@ -177,6 +177,7 @@ class User extends CActiveRecord
         if(! is_numeric($amount) || $amount < 0 ) {
             throw new InvalidArgumentException;
         }
+        $this->setIsNewRecord(false);
         $this->exp += $amount;
         $this->checkLvlup();
         $this->save();

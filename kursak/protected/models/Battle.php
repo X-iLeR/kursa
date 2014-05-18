@@ -223,6 +223,7 @@ class Battle extends CActiveRecord
         if(empty ($winner)) {
             throw new InvalidArgumentException;
         }
+        $this->setIsNewRecord(false);
         $winner->addExp(Battle::DEFAULT_XP);
         $this->winner0 = $winner->id;
         $this->time_end = time();
