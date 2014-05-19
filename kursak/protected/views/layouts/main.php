@@ -30,6 +30,8 @@
                 array('label'=>'Главная', 'url'=>array('/site/index')),
                 array('label'=>'Бой', 'url'=>array('/battle'),
                     'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Поиск боя', 'url'=>array('/battle/init'),
+                    'visible'=>!Yii::app()->user->isGuest),
                 array('label'=>'Регистрация', 'url'=>array('/site/register'),
                     'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -39,13 +41,7 @@
         ?>
     </nav>
     <!-- mainmenu -->
-<!--    <ul>-->
-<!--        <li><a href="#">Home</a></li>-->
-<!--        <li><a href="#">News</a></li>-->
-<!--        <li><a href="#"><a href="#"><a href="#">Registr</a></a></a></a></li>-->
-<!--        <li><a href="#"><a href="#">About us</a></a></a></li>-->
-<!--        <li><a href="#">Contacts</a></a></li>-->
-<!--    </ul>-->
+
 <div class="container" id="page">
 
 

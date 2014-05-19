@@ -23,21 +23,24 @@ var checkOpponent = function(user_id) {
                console.log(response['user2']);
             } else {
                 console.log('Waiting for opponent...');
-                setTimeout(function() {checkOpponent(user_id)}, 10000);
             }
             $( this ).addClass( "success" );
-//            window.location.reload();
         }).error(function() {
             $( this ).addClass( "error" );
-            setTimeout(function() {checkOpponent(user_id)}, 10000);
         }).done(function() {
+            setTimeout(function() {checkOpponent(user_id)}, 10000);
             $( this ).addClass( "done" );
         });
-
     }
 }
 
 var addOpponent = function(opponent) {
+    var $table = $('#lobby_guests_table');
+    $table.show();
+    $previous_record = checkGuestInList(opponent['id']);
+    if ( $previous_record ) {
+        $previous_record.remove();
+    }
     var $tbody = $('#lobby_guests_tbody');
     var td_id_prefix = 'lobby_guests_' + opponent['id'] + '_';
     var $tr = $('<tr class="lobby_guests_row" id="lobby_guests_row_' + opponent['id'] + '">' +
@@ -56,4 +59,10 @@ var addOpponent = function(opponent) {
            '<span class="join-result-ico">&nbsp;</span></td>'
     );
     $tbody.append($tr);
+}
+
+function checkGuestInList(id) {
+    var selector = '#lobby_guests_row_' + id;
+    var row = $(selector);
+    return row.length ? row : false;
 }

@@ -56,6 +56,7 @@ class BattleController extends Controller
         if (isset ($_POST['create']) ) {
             $battle = new Battle;
             $battle->user1 = $user_id;
+            $battle->user10->prepareForBattle();
             $battle->save();
             $this->redirect(Yii::app()->createUrl('battle/index'));
         }
@@ -105,7 +106,6 @@ class BattleController extends Controller
                     $this->redirect(Yii::app()->createUrl('battle/results'));
                     $this->render('lobby', array('lobby' => array()));
                 }
-//                $this->redirect(Yii::app()->createUrl('site/index'));
             } else {
                 $user_number = $battle->getUserNumber($user_id);
 
@@ -144,7 +144,10 @@ class BattleController extends Controller
      */
     public function actionInit()
 	{
-		$this->render('init');
+        $user_id = Yii::app()->user->id;
+        $lobby = Battle::getBattleLobby($user_id);
+        Yii::app()->clientScript->registerScriptFile('/js/lobby.js', CClientScript::POS_END);
+        $this->render('lobby', array('lobby' => $lobby));
 	}
 
     /**
@@ -154,6 +157,7 @@ class BattleController extends Controller
      */
 	public function actionJoin($id)
 	{
+
         $user_id = Yii::app()->user->id;
         if(!is_numeric($id) || $id == $user_id) {
             throw new InvalidArgumentException;
@@ -162,6 +166,7 @@ class BattleController extends Controller
         if ($battle) {
            if( empty($battle->user2) ) {
                $battle->user2 = $user_id;
+               $battle->user20->prepareForBattle();
                $battle->validate() && $battle->save();
                Helpers::returnJson(array('status'=>'joined'));
            } else {

@@ -168,7 +168,16 @@ h1 {
     border-bottom-left-radius: 2em;
     border-bottom-right-radius: 2em;
 }
-@media (max-height: 610px) {
+@media (max-height: 660px) {
+    #system_chat_block {
+        position: relative;
+    }
+    header {
+        display: none;
+    }
+}
+
+@media (max-width: 660px) {
     #system_chat_block {
         position: relative;
     }
@@ -190,6 +199,10 @@ h1 {
     float: none;
 }
 
+
+#lobby_guests_table {
+    display: none;
+}
 
 #lobby_list_thead_tr th,
 #lobby_list td,

@@ -48,8 +48,21 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
 
     <div id="battle_actions_block" class="col-xs-12 col-md-5">
         <form method="post">
+            
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id;?>">
             <input type="hidden" id="time_begin" name="time_begin" value="<?php echo $battle->time_begin;?>">
+            
+            <input type="hidden" id="user1_name" value="<?php echo $battle->user10->name;?>">
+            <input type="hidden" id="user2_name" value="<?php echo $battle->user20->name;?>">
+    <?php if (!empty ($last_turn) ): ?>
+            <input type="hidden" id="last_turn_id" value="<?php echo $last_turn->id;?>">
+            <input type="hidden" id="user1_defense" value="<?php echo $last_turn->defense1;?>">
+            <input type="hidden" id="user2_defense" value="<?php echo $last_turn->defense2;?>">
+            <input type="hidden" id="user1_attack" value="<?php echo $last_turn->attack1;?>">
+            <input type="hidden" id="user2_attack" value="<?php echo $last_turn->attack2;?>">
+            <input type="hidden" id="user1_damage" value="<?php echo $last_turn->damage1;?>">
+            <input type="hidden" id="user2_damage" value="<?php echo $last_turn->damage2;?>">
+    <?php endif; ?>
             <div class="col-xs-4 attack-choices">
                 <div class="action-choice">
                     <label for="attack1">Голова</label>
