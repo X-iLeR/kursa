@@ -258,7 +258,10 @@ class Turn extends CActiveRecord
             return false;
         }
 
-        return ($defense == $attack || $defense == ($attack + 1 ) % (Turn::BODY_SECTIONS_COUNT + 1));
+        if($attack == $defense || $attack-1 == $defense || ($attack == 1 && $defense ==4)){
+            return true;
+        }
+        return false;
     }
 
     public function createNext() {
