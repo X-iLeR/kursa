@@ -173,7 +173,6 @@ class User extends CActiveRecord
         return $this;
     }
 
-
     public function addExp($amount) {
         $this->setIsNewRecord(false);
         if(! is_numeric($amount) || $amount < 0 ) {

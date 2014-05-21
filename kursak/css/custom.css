@@ -99,7 +99,9 @@ h1 {
     padding-left: 18px;
 }
 
-.padding-no { padding: 0 !important;}
+.padding-no { padding: 0 !important;
+   margin-top: 40%;
+}
 
 
 .parameter-add {
@@ -296,4 +298,9 @@ h1 {
     .battle-results span {
         width: 220px;
     }
+}
+
+.AttOrDef {
+    text-align: center;
+    font-size: 24px;
 }

@@ -64,6 +64,7 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
             <input type="hidden" id="user2_damage" value="<?php echo $last_turn->damage2;?>">
     <?php endif; ?>
             <div class="col-xs-4 attack-choices">
+                <div class="AttOrDef">Атака</div>
                 <div class="action-choice">
                     <label for="attack1">Голова</label>
                     <input type="radio" id="attack1" name="attack" value="1"
@@ -89,6 +90,7 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
                 <input type="submit" id="moveSubmit" name="moveSubmit" value="Submit">
             </div>
             <div class="col-xs-6 defense-choices">
+                <div class="AttOrDef">Защита</div>
                 <div class="action-choice">
                     <label for="defense1">Голова и грудь</label>
                     <input type="radio" id="defense1" name="defense" value="1"                          <?php Helpers::echoIfTrue('checked="checked"' ,$turn['defense'] ==  1); ?>>
