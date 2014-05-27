@@ -94,6 +94,7 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
                 <div class="action-choice">
                     <label for="defense1">Голова и грудь</label>
                     <input type="radio" id="defense1" name="defense" value="1"                          <?php Helpers::echoIfTrue('checked="checked"' ,$turn['defense'] ==  1); ?>>
+
                 </div>
                 <div class="action-choice">
                     <label for="defense2">Грудь и живот</label>
