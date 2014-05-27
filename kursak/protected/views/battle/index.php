@@ -86,7 +86,7 @@ $opponent = ($user1->id == $user_id) ? $user2 : $user1;
                         <?php Helpers::echoIfTrue('checked="checked"' ,$turn['attack'] == 4); ?>>
                 </div>
             </div>
-            <div class="col-xs-2 padding-no">
+            <div id="choice_submit" class="col-xs-2 padding-no">
                 <input type="submit" id="moveSubmit" name="moveSubmit" value="Submit">
             </div>
             <div class="col-xs-6 defense-choices">
